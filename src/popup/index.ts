@@ -1,64 +1,19 @@
-console.log("here")
-const listTrackersHead = document.getElementById('listTrackersHead')
-const listTrackers = document.getElementById('listTrackers')
-const hostnamesList = document.createElement('ol')
-const eventListener = document.getElementById('header')
-eventListener.addEventListener('click', GoToWebsite, false)
+import { addMoreDetailsButton } from "./libs/add_more_details_button";
+import { getInfosFromBG } from "./libs/get_infos_from_background";
+import { Head } from "./libs/head";
+import { List } from "./libs/list";
 
-listTrackers.appendChild(hostnamesList)
+// tslint:disable-next-line
+declare const browser: any;
 
-AddMoreDetailsButton()
-GetInfosFromBG()
+const listTrackersHead: Head = new Head("listTrackersHead");
+const listTrackers: List = new List("listTrackers");
+const eventListener: HTMLElement = document.getElementById("header");
+eventListener.addEventListener("click", () => (window.open("http://www.kimetrak.fr")), false);
 
-browser.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
-    GetInfosFromBG()
-})
+addMoreDetailsButton("moreDetails");
+getInfosFromBG(listTrackers, listTrackersHead);
 
-function AddMoreDetailsButton () {
-    let moreDetails = document.createElement('a')
-    moreDetails.setAttribute('href', browser.runtime.getURL('html/showResults.html'))
-    moreDetails.setAttribute('target', '_blank')
-    moreDetails.setAttribute('class', 'button')
-
-    let moreDetailsText = document.createTextNode(chrome.i18n.getMessage('getMoreStats'))
-    moreDetails.appendChild(moreDetailsText)
-
-    document.getElementById('moreDetails').appendChild(moreDetails)
-}
-
-function FillRequestsList (list) {
-    while (hostnamesList.firstChild) hostnamesList.removeChild(hostnamesList.firstChild)
-    for (let i = 0; i < list.length; i++) {
-        const hostname = list[i]
-        const hostnameText = document.createTextNode(hostname)
-        const listElement = document.createElement('li')
-        const hostnameLink = document.createElement('a')
-        hostnameLink.setAttribute('href', 'http://' + hostname)
-        hostnameLink.setAttribute('target', '_blank')
-
-        hostnameLink.appendChild(hostnameText)
-        listElement.appendChild(hostnameLink)
-        hostnamesList.appendChild(listElement)
-    }
-}
-
-async function GetInfosFromBG () {
-    try {
-        const infos = await browser.runtime.sendMessage({action: 'thisTabRequests'})
-        if (infos && infos.count > 0) {
-            const textPlural = infos.count < 2 ? '' : 's'
-            document.createTextNode(chrome.i18n.getMessage('getMoreStats'))
-            listTrackersHead.textContent = chrome.i18n.getMessage('popupTitle', [infos.count, textPlural, infos.hostname])
-            FillRequestsList(infos.thirdPartysHostnames)
-        } else {
-            listTrackersHead.textContent = chrome.i18n.getMessage('popupTitleNone')
-            listTrackers.textContent = ''
-        }
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-function GoToWebsite () {
-    window.open('http://www.kimetrak.fr')
-}
+browser.runtime.onMessage.addListener(() => {
+    getInfosFromBG(listTrackers, listTrackersHead);
+});

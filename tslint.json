@@ -5,10 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "no-import-side-effect": [
-            true,
-            {"ignore-module": "(\\.min.*|\\.html|\\.css)$"}
-        ]
+        "no-inferrable-types": false
     },
     "rulesDirectory": []
 }

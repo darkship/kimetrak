@@ -73,3 +73,18 @@ a:link, a:visited {
 a:hover {
 	color: #e88228;
 }
+
+#listTrackers {
+  list-style: none;
+  padding: 0 5px;
+}
+
+#listTrackers li {
+  padding: 5px 5px 7px 5px;
+}
+
+#listTrackers li:hover {
+  background-color: #014359;
+  color: white;
+  cursor: pointer;
+}

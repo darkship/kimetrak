@@ -41,3 +41,22 @@ a:link, a:visited {
 a:hover {
 	color: #e88228;
 }
+
+.domain-header {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px;
+}
+.domain-header:hover, .domain-thirdparty:hover {
+    background-color: #014359;
+    color: white;
+}
+
+.domain-thirdparty {
+    cursor: pointer;
+    padding: 5px 5px 5px 20px;
+}
+
+.hidden {
+    display: none;
+}

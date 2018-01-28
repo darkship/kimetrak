@@ -15,7 +15,7 @@ const browser = {
     }
 }
 
-fuse.bundle('background').shim(browser).instructions(' > background/index.ts').watch()
-fuse.bundle('popup').shim(browser).instructions(' > popup/index.ts').watch()
-fuse.bundle('result').shim(browser).instructions(' > result/index.ts').watch()
+fuse.bundle('background').instructions(' > background/index.ts').watch()
+fuse.bundle('popup').instructions(' > popup/index.ts').watch()
+fuse.bundle('result').instructions(' > result/index.ts').watch()
 fuse.run()

@@ -11,13 +11,11 @@ export class List {
     }
 
     public addItem(item: IthirdPartyItem): List {
-        const a: HTMLElement = document.createElement("a");
-        a.innerText = item.hostname;
-        a.setAttribute("href", `${item.protocol}://${item.hostname}`);
-        a.setAttribute("target", "_blank");
-
         const li: HTMLElement = document.createElement("li");
-        li.appendChild(a);
+        li.innerText = item.hostname;
+        li.onclick = (e: Event): void => {
+            window.open(`${item.protocol}//${item.hostname}`);
+        };
         this.node.appendChild(li);
 
         return this;

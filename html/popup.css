@@ -83,6 +83,10 @@ a:hover {
   padding: 5px 5px 7px 5px;
 }
 
+#listTrackers li:nth-child(2n) {
+	background-color: rgba(1, 67, 89, 0.1);
+}
+
 #listTrackers li:hover {
   background-color: #014359;
   color: white;

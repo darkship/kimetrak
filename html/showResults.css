@@ -7,32 +7,6 @@ body {
 h1 {
     text-decoration: underline;
 }
-.source, .source_unfolded {
-    font-weight: bolder;
-    text-decoration: underline;
-    margin-bottom: 12px;
-    list-style-type: none;
-    margin-left: -15px;
-    cursor: pointer;
-}
-
-.source:before {
-    content: "+";
-    padding-right: 8px;
-}
-
-.source_unfolded:before {
-    content: "-";
-    padding-right: 8px;
-}
-
-.foldable {
-    display: none;
-}
-
-.unfolded {
-    display: block;
-}
 
 a:link, a:visited {
 	color: #014359;
@@ -46,7 +20,13 @@ a:hover {
     cursor: pointer;
     font-weight: bold;
     padding: 5px;
+    margin-top: 5px;
 }
+
+.domain-thirdparty:nth-child(2n) {
+  background-color: rgba(1, 67, 89, 0.1);
+}
+
 .domain-header:hover, .domain-thirdparty:hover {
     background-color: #014359;
     color: white;

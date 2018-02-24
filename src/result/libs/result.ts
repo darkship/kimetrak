@@ -25,6 +25,10 @@ export class Result {
             listElement.classList.add("domain-list");
             listElement.classList.add("hidden");
 
+            headerElement.onclick = (e: Event): void => {
+                listElement.classList.toggle("hidden");
+            };
+
             domain.requests.forEach((thirdParty: IThirdParty): void => {
                 const el: HTMLElement = document.createElement("div");
                 el.innerText = `${thirdParty.type} - ${thirdParty.hostname}`;
@@ -39,9 +43,6 @@ export class Result {
             domainElement.classList.add("domain");
             domainElement.appendChild(headerElement);
             domainElement.appendChild(listElement);
-            domainElement.onclick = (e: Event): void => {
-              listElement.classList.toggle("hidden");
-            };
 
             this.list.appendChild(domainElement);
         });
